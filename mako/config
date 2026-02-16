@@ -1,0 +1,20 @@
+# #######################################################################################
+# MAKO CONFIGURATION
+# #######################################################################################
+
+font=DejaVu Sans 10
+background-color=#0a0a0ae6
+text-color=#ffffff
+border-size=1
+border-color=#ffffff1a
+border-radius=8
+padding=15
+margin=10
+width=300
+height=100
+default-timeout=5000
+ignore-timeout=0
+
+[urgency=high]
+border-color=#ffffffaa
+default-timeout=0
