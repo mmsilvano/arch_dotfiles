@@ -7,9 +7,9 @@
     "margin-left": 10,
     "margin-right": 10,
 
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["hyprland/workspaces", "window"],
     "modules-center": [],
-    "modules-right": ["clock"],
+    "modules-right": ["pulseaudio", "network", "battery", "clock"],
 
     "hyprland/workspaces": {
         "format": "{id}",
@@ -19,6 +19,53 @@
         "all-outputs": false,
         "show-special": false,
         "persistent-workspaces": {}
+    },
+
+    "window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "󰝟",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰍾",
+            "headset": "󰍾",
+            "phone": "󰏎",
+            "portable": "󰏎",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "tooltip-format": "Volume: {volume}%"
+    },
+
+    "network": {
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "format-alt": "{ifname}: {ipaddr}",
+        "interval": 5,
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "tooltip-format": "{timeTo}, {capacity}%"
     },
 
     "clock": {

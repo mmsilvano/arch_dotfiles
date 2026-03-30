@@ -14,7 +14,6 @@ configuration {
 }
 
 @theme "/dev/null"
-@import "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
     bg0:    #0d0d0df0;

@@ -18,10 +18,17 @@ WAYLAND_PKGS=(
 # ── Bar & Notifications ───────────────────────────────────────────────────────
 BAR_PKGS=(
     waybar                          # Status bar
+    waybar-hyprland                 # Hyprland module for waybar
     mako                            # Notification daemon
     rofi-wayland                    # App launcher (Wayland-native fork)
     swww                            # Wallpaper daemon with smooth transitions
     python-pywal                    # Color scheme generator from wallpaper
+    libinput                        # Touchpad/gesture support
+    playerctl                       # Media player controls for waybar
+    networkmanager                  # Network manager for waybar
+    iproute2                        # Network info for waybar
+    upower                          # Battery info for waybar
+    pulseaudio                      # Audio for waybar
 )
 
 # ── Terminals & Shell ─────────────────────────────────────────────────────────

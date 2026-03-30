@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
 @import "pywal-colors.css";
 
-/* Variables from pywal-colors.css:
-   --wal-bg, --wal-fg, --wal-color0...7, --wal-accent
-*/
+/* Fallback CSS variables if pywal-colors.css doesn't exist yet */
+* {
+    --wal-bg: #0d0d0d;
+    --wal-fg: #f0f0f0;
+    --wal-color0: #0d0d0d;
+    --wal-color1: #e06c75;
+    --wal-color2: #98c379;
+    --wal-color3: #e5c07b;
+    --wal-color4: #61afef;
+    --wal-color5: #c678dd;
+    --wal-color6: #56b6c2;
+    --wal-color7: #abb2bf;
+    --wal-accent: #61afef;
+}
 
 * {
     border: none;
@@ -100,4 +111,79 @@ tooltip {
 
 tooltip label {
     color: #f0f0f0;
+}
+
+/* ============================================================
+   PULSEAUDIO
+   ============================================================ */
+#pulseaudio {
+    padding: 6px 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#pulseaudio:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+}
+
+#pulseaudio.muted {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* ============================================================
+   NETWORK
+   ============================================================ */
+#network {
+    padding: 6px 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#network:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+}
+
+#network.disconnected {
+    color: rgba(255, 100, 100, 0.7);
+}
+
+/* ============================================================
+   BATTERY
+   ============================================================ */
+#battery {
+    padding: 6px 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#battery:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+}
+
+#battery.warning {
+    color: #e5c07b;
+}
+
+#battery.critical {
+    color: #e06c75;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ============================================================
+   WINDOW
+   ============================================================ */
+#window {
+    padding: 6px 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+#window:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
 }

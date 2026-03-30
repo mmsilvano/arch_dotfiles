@@ -95,7 +95,12 @@ for dir in "${SYMLINK_DIRS[@]}"; do
         continue
     fi
 
-    if [ -d "$TARGET" ] || [ -f "$TARGET" ] || [ -L "$TARGET" ]; then
+    if [ -L "$TARGET" ] && [ "$(readlink -f "$TARGET")" = "$(readlink -f "$SOURCE")" ]; then
+        success "$dir already correctly linked — skipping."
+        continue
+    fi
+
+    if [ -d "$TARGET" ] || [ -f "$TARGET" ]; then
         info "Backing up existing $dir → $BACKUP"
         mv "$TARGET" "$BACKUP"
     fi
@@ -329,6 +334,14 @@ if [ ! -f "$WAL_CSS" ]; then
 }
 WALCSS
     success "pywal-colors.css defaults created."
+fi
+
+mkdir -p "$HOME/.cache/wal"
+WAL_ROFI="$HOME/.cache/wal/colors-rofi-dark.rasi"
+if [ ! -f "$WAL_ROFI" ]; then
+    info "Creating default rofi colors fallback..."
+    cp "$DOTFILES_DIR/rofi/colors-rofi-dark.rasi" "$WAL_ROFI"
+    success "rofi colors fallback created."
 fi
 
 ALAC_TOML="$DOTFILES_DIR/alacritty/themes/pywal.toml"
