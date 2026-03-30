@@ -107,6 +107,26 @@ done
 
 # Make scripts executable
 chmod +x "$DOTFILES_DIR"/scripts/*.sh 2>/dev/null || true
+chmod +x "$DOTFILES_DIR"/tools/*.sh 2>/dev/null || true
+
+# Set Bibata cursor for GTK apps
+info "Setting Bibata-Modern-Classic cursor theme..."
+mkdir -p "$HOME/.config/gtk-3.0"
+if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
+    sed -i 's/^gtk-cursor-theme-name=.*/gtk-cursor-theme-name=Bibata-Modern-Classic/' "$HOME/.config/gtk-3.0/settings.ini" 2>/dev/null
+    grep -q 'gtk-cursor-theme-name' "$HOME/.config/gtk-3.0/settings.ini" || echo "gtk-cursor-theme-name=Bibata-Modern-Classic" >> "$HOME/.config/gtk-3.0/settings.ini"
+    sed -i 's/^gtk-cursor-theme-size=.*/gtk-cursor-theme-size=24/' "$HOME/.config/gtk-3.0/settings.ini" 2>/dev/null
+    grep -q 'gtk-cursor-theme-size' "$HOME/.config/gtk-3.0/settings.ini" || echo "gtk-cursor-theme-size=24" >> "$HOME/.config/gtk-3.0/settings.ini"
+else
+    cat > "$HOME/.config/gtk-3.0/settings.ini" << 'GTK3'
+[Settings]
+gtk-cursor-theme-name=Bibata-Modern-Classic
+gtk-cursor-theme-size=24
+GTK3
+fi
+gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic' 2>/dev/null || true
+gsettings set org.gnome.desktop.interface cursor-size 24 2>/dev/null || true
+success "Cursor theme → Bibata-Modern-Classic (24px)"
 
 # #######################################################################################
 # STEP 9 — Neovim Plugin Bootstrap
