@@ -1,70 +1,109 @@
-# Minimal Monochrome Hyprland Dotfiles
+# 🌑 Arch Dotfiles
 
-An ultra-minimal, high-performance, and developer-focused Hyprland setup. No clutter, no distractions, just cold monochrome efficiency.
+Minimal, dark, glassmorphism Hyprland setup for Arch Linux / CachyOS.
 
-## Philosophy
-- **Zero Bloat**: Only the essentials. No CPU/RAM modules, no tray, no window titles.
-- **Sleek Monochrome**: A clean white-on-black aesthetic with subtle transparencies and blurs.
-- **Speed**: Optimized animations for a snappy, responsive feel.
-- **Security**: Minimal surface area with a clean lock screen.
+## Stack
 
-## Prerequisites
-- **OS**: Arch Linux or CachyOS.
-- **Package Manager**: `pacman`.
+| Component | App |
+|-----------|-----|
+| WM | Hyprland |
+| Bar | Waybar |
+| Terminal | Alacritty |
+| Launcher | Rofi (Wayland) |
+| Notifications | Mako |
+| Editor | Neovim (Kickstart) |
+| Shell | Zsh + Starship |
+| File Manager | Nautilus |
+| Browser | Brave / Firefox / Chrome |
 
-## Installation
+## Install
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/dotfiles.git ~/projects/arch_dotfiles
-   cd ~/projects/arch_dotfiles
-   ```
-
-2. Run the installer:
-   ```bash
-   chmod +x install.sh
-   ./install.sh
-   ```
-
-The script will install dependencies (Hyprland, Waybar, Wofi, etc.), backup your existing configs, and symlink the new ones.
-
-## Keybinds
-
-| Keybind | Action |
-| --- | --- |
-| `SUPER + T` | Open Kitty Terminal |
-| `SUPER + B` | Open Brave Browser |
-| `SUPER + E` | Open Neovim (in Kitty) |
-| `SUPER + P` | Open Rofi Spotlight |
-| `SUPER + Q` | Kill Active Window |
-| `SUPER + V` | Toggle Floating |
-| `SUPER + F` | Fullscreen |
-| `SUPER + 1-3` | Switch Workspace |
-| `SUPER + SHIFT + 1-3` | Move Window to Workspace |
-
-## Customization
-
-### Changing Clock Format
-Edit `~/.config/waybar/config`:
-```json
-"clock": {
-    "format": "{:%A %-d}" // Thursday 4
-}
-```
-
-### Modifying Theme
-The monochrome theme is primarily controlled in:
-- `~/.config/hypr/hyprland.conf`: Borders and gaps.
-- `~/.config/waybar/style.css`: Bar appearance.
-- `~/.config/rofi/config.rasi`: Launcher appearance (Spotlight style).
-
-## Uninstallation
-The installer creates backups with a `.bak` extension. To revert, simply delete the symlinks and rename the backups:
 ```bash
-rm -rf ~/.config/hypr ~/.config/waybar ~/.config/rofi ~/.config/hyprlock ~/.config/mako
-mv ~/.config/hypr.bak.<timestamp> ~/.config/hypr
-# ... repeat for other modules
+git clone https://github.com/youruser/arch_dotfiles ~/.dotfiles
+cd ~/.dotfiles
+bash install.sh
 ```
 
----
-*Stay focused. Stay minimal.*
+The script will:
+- Install `yay` if not present
+- Install all packages (pacman + AUR)
+- Symlink configs to `~/.config/`
+- Setup Docker + add user to docker group
+- Setup Zsh + Starship prompt
+- Create Antigravity PWA shortcut
+
+After install:
+1. **Re-login** (docker group + shell change)
+2. Run `nvim` — lazy.nvim bootstraps and installs all plugins automatically
+3. Add wallpaper to `~/Pictures/Wallpapers/wallpaper.jpg`
+
+## Keybindings
+
+### Workspace
+| Binding | Action |
+|---------|--------|
+| `SUPER + 1…9` | Switch to workspace (dynamic) |
+| `ALT + q,w,e,r,t,y` | Move active window → workspace 1–6 |
+| `SUPER + Tab` | Next workspace |
+| `SUPER + Shift + Tab` | Prev workspace |
+
+### App Launchers
+| Binding | App |
+|---------|-----|
+| `SUPER + Return` | Alacritty |
+| `SUPER + B` | Brave |
+| `SUPER + E` | Nautilus |
+| `SUPER + \`` | Rofi launcher (grave) |
+| `SUPER + Shift + S` | Settings / Wallpaper menu |
+| `ALT + 1` | Brave |
+| `ALT + 2` | Alacritty |
+| `ALT + 3` | Nautilus |
+
+### Window
+| Binding | Action |
+|---------|--------|
+| `SUPER + Q` | Close window |
+| `SUPER + F` | Fullscreen |
+| `SUPER + V` | Toggle floating |
+| `SUPER + M` | Scratchpad toggle |
+| `SUPER + Shift + M` | Move to scratchpad |
+| `Print` | Screenshot (select area → clipboard) |
+| `Shift + Print` | Screenshot → save to ~/Pictures |
+
+### Neovim Leader Keys (`Space`)
+| Binding | Action |
+|---------|--------|
+| `<leader>e` | File tree (Neo-tree) |
+| `<leader>sf` | Find files (Telescope) |
+| `<leader>sg` | Live grep |
+| `<leader>f` | Format buffer |
+| `<leader>ca` | Code action |
+| `<leader>rn` | Rename symbol |
+| `<leader>la` | Laravel Artisan |
+| `<leader>lr` | Laravel Routes |
+| `gd` | Go to definition |
+| `gr` | Go to references |
+| `K` | Hover docs |
+| `Ctrl+\` | Float terminal |
+
+## Structure
+
+```
+arch_dotfiles/
+├── hypr/
+│   └── hyprland.conf
+├── waybar/
+│   ├── config
+│   └── style.css
+├── rofi/
+│   └── config.rasi
+├── alacritty/
+│   ├── alacritty.toml
+│   └── themes/dark.toml
+├── nvim/
+│   └── init.lua          ← Kickstart-based, auto-installs plugins
+├── mako/
+│   └── config
+├── hyprlock/
+└── install.sh
+```

@@ -1,26 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+@import "pywal-colors.css";
+
+/* Variables from pywal-colors.css:
+   --wal-bg, --wal-fg, --wal-color0...7, --wal-accent
+*/
+
 * {
     border: none;
     border-radius: 0;
-    font-family: "DejaVu Sans", "Helvetica", "Arial", sans-serif;
-    font-size: 14px;
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+    font-size: 13px;
     min-height: 0;
+    transition: all 0.2s ease;
 }
 
+/* ============================================================
+   BAR
+   ============================================================ */
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
-    border-bottom: 0px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    color: #f0f0f0;
 }
 
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: var(--wal-bg);
+    border: 1px solid var(--wal-color7);
+    border-radius: 12px;
+    margin: 0 4px;
+    padding: 0 4px;
+}
+
+/* ============================================================
+   WORKSPACES
+   ============================================================ */
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    padding: 4px 12px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.45);
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    min-width: 28px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+#workspaces button.active {
+    background-color: var(--wal-accent);
+    color: var(--wal-fg);
+}
+
+#workspaces button.occupied {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+#workspaces button.urgent {
+    background-color: rgba(255, 100, 100, 0.25);
+    color: #ff6464;
+}
+
+/* ============================================================
+   CLOCK
+   ============================================================ */
 #clock {
-    padding-left: 16px;
-    padding-right: 16px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    padding: 6px 18px;
+    font-weight: 600;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.3px;
 }
 
 #clock:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+/* Tooltip */
+tooltip {
+    background-color: rgba(10, 10, 10, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #f0f0f0;
+    padding: 8px;
+}
+
+tooltip label {
+    color: #f0f0f0;
 }
